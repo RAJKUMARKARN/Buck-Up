@@ -34,4 +34,8 @@ Start the Backend sever : cd Frontend >> npm run dev
 Start the Frontend Server : cd Backend >> npm run dev
 
 
+![App Logo](public/BrandImage.png)
+![Login Page](public/loginpage.png)
+![Dashboard](public/dashboard.png)
+![SignUp](public/SignUp.png)
 
