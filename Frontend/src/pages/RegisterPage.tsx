@@ -1,40 +1,47 @@
 import { useMutation } from "@tanstack/react-query";
 import { registerUserAPI } from "../api/authApi";
 import { registerSchema } from "../schemas/authSchemas";
-import { Link } from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
 import React from "react";
 
 export default function RegisterPage() {
+  const navigate = useNavigate();
   const mutation = useMutation({
     mutationFn: registerUserAPI,
-    onSuccess: () => alert("Registered successfully!"),
-    onError: () => alert("Registration failed"),
+    onSuccess: () =>{ 
+    alert("Registered successfully!");
+    navigate("/dashboard");
+  },
+   onError: () => alert("Registration failed"),
   });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
+  e.preventDefault(); // prevent page reload
+  const form = e.currentTarget;
 
-    const name = (form.elements.namedItem("name") as HTMLInputElement).value;
-    const email = (form.elements.namedItem("email") as HTMLInputElement).value;
-    const password = (form.elements.namedItem("password") as HTMLInputElement).value;
-    const confirmPassword = (form.elements.namedItem("confirmPassword") as HTMLInputElement).value;
+  const name = (form.elements.namedItem("name") as HTMLInputElement).value;
+  const email = (form.elements.namedItem("email") as HTMLInputElement).value;
+  const password = (form.elements.namedItem("password") as HTMLInputElement).value;
+  const confirmPassword = (form.elements.namedItem("confirmPassword") as HTMLInputElement).value;
 
-    if (password !== confirmPassword) {
-      alert("Passwords do not match");
-      return;
-    }
+  // Confirm password validation
+  if (password !== confirmPassword) {
+    alert("Passwords do not match");
+    return;
+  }
 
-    const formData = { name, email, password };
+  const formData = { name, email, password };
 
-    const parsed = registerSchema.safeParse(formData);
-    if (!parsed.success) {
-      alert(parsed.error.issues[0].message);
-      return;
-    }
+  // Optional: Zod validation
+  const parsed = registerSchema.safeParse(formData);
+  if (!parsed.success) {
+    alert(parsed.error.issues[0].message);
+    return;
+  }
 
-    mutation.mutate(parsed.data);
-  };
+  // Call backend via React Query
+  mutation.mutate(parsed.data);
+};
 
   return (
     <div className="flex w-full h-screen">

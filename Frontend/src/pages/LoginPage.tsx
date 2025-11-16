@@ -1,33 +1,38 @@
 import { useMutation } from "@tanstack/react-query";
 import { loginUserAPI } from "../api/authApi";
 import { loginSchema } from "../schemas/authSchemas";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
+   const navigate = useNavigate(); 
   const mutation = useMutation({
     mutationFn: loginUserAPI,
-    onSuccess: () => alert("Logged in!"),
+    onSuccess: () => {
+    alert("Logged in!");
+    navigate("/dashboard");
+  },
     onError: () => alert("Invalid credentials"),
   });
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  const form = e.currentTarget;
 
-    const form = e.currentTarget;
+  const email = (form.elements.namedItem("email") as HTMLInputElement).value;
+  const password = (form.elements.namedItem("password") as HTMLInputElement).value;
 
-    const formData = {
-      email: form.email.value,
-      password: form.password.value,
-    };
+  const formData = { email, password };
 
-    const parsed = loginSchema.safeParse(formData);
-    if (!parsed.success) {
-      alert(parsed.error.issues[0].message);
-      return;
-    }
+  // Optional: Zod validation
+  const parsed = loginSchema.safeParse(formData);
+  if (!parsed.success) {
+    alert(parsed.error.issues[0].message);
+    return;
+  }
 
-    mutation.mutate(parsed.data);
-  };
+  // Call backend via React Query
+  mutation.mutate(parsed.data);
+};
 
   return (
    <div className="flex h-screen">

@@ -1,14 +1,20 @@
-var jwt = require("jsonwebtoken");
-var User = require("../models/userModel");
+import jwt from "jsonwebtoken";
+import User from "../models/user";
+import { Request, Response, NextFunction } from "express";
 
 // Type for request with user data
 interface AuthRequest extends Request {
   user?: any;
 }
 
-const authMiddleware = async (req: any, res: any, next: any) => {
+export const authMiddleware = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const token = req.cookies.token || req.header("Authorization")?.replace("Bearer ", "");
+    const token =
+      req.cookies.token || req.header("Authorization")?.replace("Bearer ", "");
 
     if (!token) {
       return res.status(401).json({ message: "No token provided. Unauthorized" });
@@ -26,12 +32,8 @@ const authMiddleware = async (req: any, res: any, next: any) => {
 
     req.user = user; // Attach user to req
     next();
-
   } catch (error: any) {
     console.error("Auth Middleware Error:", error.message);
     return res.status(401).json({ message: "Invalid or expired token" });
   }
 };
-
-// ⭐ IMPORTANT: This makes the file a module — prevents TS redeclare errors
-module.exports = authMiddleware;

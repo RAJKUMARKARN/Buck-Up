@@ -14,10 +14,6 @@ export const registerUser = async(req:any, res:any)=>{
         if(password.length<6){
             return res.status(400).json({message: "password must be at leasr 6 characters long"});
         }
-        //checking weither the age is not negative
-        if(age && age<0){
-            return res.status(400).json({message:"age cannot be negative"})
-        }
         //checking weither the user akreasdy exists
         const existingUser = await User.findOne({email :email});
         if(existingUser ){
@@ -51,7 +47,7 @@ export const loginUser = async(req:any , res:any)=>{
 
         //checeking if the userExists
         const user = await User.findOne({email})
-        if(user){
+        if(!user){
             res.status(400).json({message:"Something went wrong"});
         }
         const isMatch = await bcrypt.compare(password, user.password);

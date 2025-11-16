@@ -3,7 +3,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:3000/api/auth",
+  baseURL: "http://localhost:5000/api/auth",
   withCredentials: true,
 });
 
@@ -20,8 +20,12 @@ export const registerUserAPI = async (data: {
 
 // LOGIN
 export const loginUserAPI = async (data: { email: string; password: string }) => {
-  const res = await API.post("/login", data);
-  return res.data;
+  const response = await axios.post(
+    "http://localhost:5000/api/auth/login",
+    data,
+    { withCredentials: true } // important if backend sets cookies
+  );
+  return response.data;
 };
 
 // FORGOT PASSWORD  ✅ ADD THIS
