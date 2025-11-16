@@ -33,10 +33,11 @@ PORT=5000
 Start the Backend sever : cd Frontend >> npm run dev
 Start the Frontend Server : cd Backend >> npm run dev
 
+![Logo](Frontend/public/Logo.png)
 ![Brand Image](Frontend/public/BrandImage.png)
 ![Dashboard](Frontend/public/dashboard.png)
 ![Login Page](Frontend/public/Loginpage.png)
-![Logo](Frontend/public/Logo.png)
 ![SignUp](Frontend/public/SignUp.png)
+
 
 
