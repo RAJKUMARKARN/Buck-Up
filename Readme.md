@@ -35,7 +35,6 @@ Start the Frontend Server : cd Backend >> npm run dev
 
 ![Brand Image](Frontend/public/BrandImage.png)
 ![Dashboard](Frontend/public/dashboard.png)
-![Illustration](Frontend/public/Group%201000007140.png)
 ![Login Page](Frontend/public/Loginpage.png)
 ![Logo](Frontend/public/Logo.png)
 ![SignUp](Frontend/public/SignUp.png)
