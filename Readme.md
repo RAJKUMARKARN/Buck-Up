@@ -29,7 +29,7 @@ JWT_SECRET=your_jwt_secret
 PORT=5000 
 }
 
-//////////////////////////////
+
 
                                                           **********Backend Server **********
 Start the Backend sever : cd Frontend >> npm run dev
@@ -40,6 +40,7 @@ Start the Frontend Server : cd Backend >> npm run dev
 ![Dashboard](Frontend/public/dashboard.png)
 ![Login Page](Frontend/public/Loginpage.png)
 ![SignUp](Frontend/public/SignUp.png)
+
 
 
 
