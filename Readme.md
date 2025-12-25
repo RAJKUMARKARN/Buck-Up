@@ -1,3 +1,4 @@
+
                                                               ********** BUCK UP ***********
 BUCK_UP is a sleek Basic to-do Application  designed to help you organise your  task efficently , It consisits of Create , update , delete their
 todos while keeping the data synced with backend server.
@@ -30,7 +31,7 @@ PORT=5000
 }
 
 
-
+//////////
                                                           **********Backend Server **********
 Start the Backend sever : cd Frontend >> npm run dev
 Start the Frontend Server : cd Backend >> npm run dev
@@ -40,6 +41,7 @@ Start the Frontend Server : cd Backend >> npm run dev
 ![Dashboard](Frontend/public/dashboard.png)
 ![Login Page](Frontend/public/Loginpage.png)
 ![SignUp](Frontend/public/SignUp.png)
+
 
 
 
