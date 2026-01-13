@@ -1,4 +1,4 @@
----
+
                                                               ********** BUCK UP ***********
 BUCK_UP is a sleek Basic to-do Application  designed to help you organise your  task efficently , It consisits of Create , update , delete their
 todos while keeping the data synced with backend server.
